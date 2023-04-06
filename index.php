@@ -15,7 +15,7 @@ if (isset($_POST['bt_submit'])) {
       $_SESSION['success'] = "Login Successful.";
       header('location: meter_reading.php');
     } else {
-      $_SESSION['error'] = "Invalide Username.";
+      $_SESSION['error'] = "Invalide Username or Password.";
       // header('location: index.php');
     }
   }

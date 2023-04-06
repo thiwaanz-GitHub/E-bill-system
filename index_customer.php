@@ -257,9 +257,13 @@ function calculateBill($units) {
     if ($units <= 30) {
         $firstRangeTotal = calculateFirstRange($units);
     } elseif (30 < $units && $units <= 90) {
-        $secondRangeTotal = (calculateFirstRange($units) + calculateSecondRange($units)) - 500;
+        // $newUnits = $units-30;
+        $secondRangeTotal = (calculateFirstRange(30) + calculateSecondRange($units)) - 500;
     } elseif ($units > 60) {
-        $thirdRangeTotal = (calculateFirstRange($units) + calculateSecondRange($units) + calculateThirdRange($units)) - 1500;
+        // $newUnits1 = $units-30;
+        // $newUnits2 = $units-60;
+
+        $thirdRangeTotal = (calculateFirstRange(30) + calculateSecondRange($units) + calculateThirdRange($units)) - 1500;
     }
 
     $totalCharge = total($firstRangeTotal, $secondRangeTotal, $thirdRangeTotal);
@@ -269,7 +273,7 @@ function calculateBill($units) {
 // Example usage
 // echo calculateBill($units);
 //Test
-echo calculateBill(40);
+echo calculateBill(70);
 
 
   ?>
