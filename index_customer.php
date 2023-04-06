@@ -214,7 +214,7 @@ if (isset($_POST['bt_search'])) {
 
 // Calculation unit charges
 
-$units = ($result_latest_reader['first_m_reading'] - $result_previous_reader['second_m_reading']); 
+// $units = ($result_latest_reader['first_m_reading'] - $result_previous_reader['second_m_reading']); 
 function calculateFirstRange($units){
     $fixedCharge = 500;
     $perUnitCharge = 20;
@@ -267,9 +267,9 @@ function calculateBill($units) {
 }
 
 // Example usage
-echo calculateBill($units);
+// echo calculateBill($units);
 //Test
-// echo calculateBill(40);
+echo calculateBill(40);
 
 
   ?>
