@@ -70,14 +70,20 @@ if (isset($_POST['bt_submit'])) {
         </div>
       </div>
 
-      <div class="mb-3 row">
+      <div class="mb-5 row">
         <label for="user_pass" class="col-sm-2 col-form-label fw-bold">Password</label>
         <div class="col-sm-10">
           <input type="password" class="form-control" id="user_pass" name="user_pass" />
         </div>
       </div>
 
+      <div class="d-flex justify-content-between">
+        <a href="index_customer.php">
+        <button type="button" class="btn btn-light">Generate EBill</button>
+      </a>
       <button type="submit" class="btn btn-primary" name="bt_submit">Submit</button>
+      </div>
+      
     </form>
   </main>
 
