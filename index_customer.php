@@ -1,6 +1,24 @@
 <?php
 session_start();
 include 'includes/connection.php';
+
+if (isset($_POST['bt_search'])) {
+
+    $accNo = $_POST['acc_no'];
+
+    $sql = "SELECT * FROM customer WHERE acc_no LIKE '$accNo'";
+
+    $result = $con->query($sql);
+    $row = $result->fetch_assoc();
+
+    if ($result->num_rows > 0) {
+        $_SESSION['acc_no'] = $accNo;
+        $_SESSION['acc_name'] = $row['cus_name'];
+
+    } else {
+        $_SESSION['error'] = "Account number does not exists";
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,6 +78,8 @@ include 'includes/connection.php';
 
             $accNo = $_SESSION['acc_no'];
             $accName = $_SESSION['acc_name'];
+            unset($_SESSION['acc_no']);
+            unset($_SESSION['acc_name']);
 
             $sql = "SELECT * FROM meter_reading
                 WHERE m_reading <= (SELECT MAX(m_reading) FROM meter_reading) 
