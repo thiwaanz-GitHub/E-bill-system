@@ -66,7 +66,7 @@ if (isset($_POST['bt_save'])) {
   </div>
 
   <main class="container w-100 m-auto form">
-    <form method="post">
+    <form method="post" class="form">
       <h2 class="mb-5 fw-bold text-uppercase">Meter Reading</h2>
 
       <div class="mb-3 row">
@@ -90,12 +90,7 @@ if (isset($_POST['bt_save'])) {
         </div>
       </div>
 
-      <div class="d-flex justify-content-between">
-        <a href="index_customer.php">
-          <button type="button" class="btn btn-light">Generate EBill</button>
-        </a>
-        <button type="submit" class="btn btn-primary " name="bt_save">Save</button>
-      </div>
+      <button type="submit" class="btn btn-primary btt" name="bt_save">Save</button>
 
     </form>
   </main>

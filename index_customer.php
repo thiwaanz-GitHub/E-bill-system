@@ -136,13 +136,13 @@ if (isset($_POST['bt_search'])) {
                 <input type="number" class="form-control" id="acc_no" name="acc_no">
             </div>
             <div class="col-auto">
-                <button type="submit" class="btn btn-primary " name="bt_search">Search</button>
+                <button type="submit" class="btn btn-primary" id="btt" name="bt_search">Search</button>
             </div>
         </form>
     </div>
 
     <!-- Result Container -->
-    <div class="container p-5 bill">
+    <div class="container p-5 bill mt-5">
         <?php
         if (isset($_SESSION['acc_no'])) {
 
@@ -166,24 +166,24 @@ if (isset($_POST['bt_search'])) {
                 } else {
                     ?>
 
-                    <h2 class="text-center fw-bold text-uppercase ">Monthly Bill</h2>
-
-                    <div class="container p-5 mt-5 justify-content-center">
-                        <div class="row h5">
+                    <h2 class="text-center fw-bold text-uppercase" >Monthly Bill</h2>
+                    <div class="table-responsive p-5">
+                    <div class="container justify-content-center">
+                        <div class="row h6">
                             <div class="col fw-bold">Account Number</div>
                             <div class="col text-end">
                                 <?php echo $accNo; ?>
                             </div>
                         </div>
 
-                        <div class="row h5">
+                        <div class="row h6">
                             <div class="col fw-bold">Customer Name </div>
                             <div class="col text-end">
                                 <?php echo $accName; ?>
                             </div>
                         </div>
 
-                        <div class="row h5">
+                        <div class="row h6">
                             <div class="col fw-bold">Last Meter Reading </div>
                             <div class="col text-end">
                                 <?php echo $rowOne['m_reading']; ?>
@@ -196,7 +196,7 @@ if (isset($_POST['bt_search'])) {
                             </div>
                         </div>
 
-                        <div class="row h5">
+                        <div class="row h6">
                             <div class="col fw-bold">Previous Meter Reading </div>
                             <div class="col text-end">
                                 <?php echo $rowTwo['m_reading']; ?>
@@ -216,9 +216,7 @@ if (isset($_POST['bt_search'])) {
                         $totalPriceForUnits = totalPriceForUnits($resultArray);
                         $totalPriceForMonth = totalPriceForMonth($resultArray);
                         ?>
-
-                        <div class="table-responsive p-5">
-                            <table class="table table-bordered border-dark">
+                            <table class="table table-bordered border-dark mt-4 bill-table">
                                 <thead>
                                     <tr>
                                         <th scope="col">Unit Range</th>
@@ -260,45 +258,44 @@ if (isset($_POST['bt_search'])) {
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>
+                        
 
-                        <div class="row h5">
+                        <div class="row h6 mt-4">
                             <div class="col fw-bold">Total Units For Month</div>
                             <div class="col text-end">
                                 <?php echo $units; ?>
                             </div>
                         </div>
 
-                        <div class="row h5">
+                        <div class="row h6">
                             <div class="col fw-bold">Total Charge For Units</div>
                             <div class="col text-end">
                                 <?php echo $totalPriceForUnits; ?>
                             </div>
                         </div>
 
-                        <div class="row h5">
+                        <div class="row h6">
                             <div class="col fw-bold">Fixed Charge For Month</div>
                             <div class="col text-end">
                                 <?php echo $resultArray[3]; ?>
                             </div>
 
                         </div>
-                        <div class="row h5">
+                        <div class="row h6">
                             <div class="col fw-bold">Total Charge For Month</div>
                             <div class="col text-end">
                                 <?php echo $totalPriceForMonth; ?>
                             </div>
                         </div>
-
+                        </div>
                     </div>
-
+                    </div>
                     <?php
                 }
             }
         }
         ?>
-    </div>
+    
 
 </body>
-
 </html>
