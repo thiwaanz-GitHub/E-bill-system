@@ -166,7 +166,7 @@ if (isset($_POST['bt_search'])) {
                 } else {
                     ?>
 
-                    <h2 class="text-center fw-bold text-uppercase ">Monthly Bill</h2>
+                    <h2 class="text-center fw-bold text-uppercase" >Monthly Bill</h2>
                     <div class="table-responsive p-5">
                     <div class="container justify-content-center">
                         <div class="row h6">
@@ -216,7 +216,7 @@ if (isset($_POST['bt_search'])) {
                         $totalPriceForUnits = totalPriceForUnits($resultArray);
                         $totalPriceForMonth = totalPriceForMonth($resultArray);
                         ?>
-                            <table class="table table-bordered border-dark mt-4">
+                            <table class="table table-bordered border-dark mt-4 bill-table">
                                 <thead>
                                     <tr>
                                         <th scope="col">Unit Range</th>
