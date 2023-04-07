@@ -1,94 +1,6 @@
 <?php
 session_start();
 include 'includes/connection.php';
-
-// Calculation unit charges
-function totalPriceForUnits($resultArray)
-{
-    return $resultArray[0] + $resultArray[1] + $resultArray[2];
-}
-
-function totalPriceForMonth($resultArray)
-{
-    return totalPriceForUnits($resultArray) + $resultArray[3];
-}
-
-function calculateBill($units)
-{
-    $firstRangeTotal = 0;
-    $secondRangeTotal = 0;
-    $thirdRangeTotal = 0;
-    $fixedCharge = 0;
-    $unitsTmp = $units;
-
-    // Constants
-    $fixedChargesArray = array(500, 1000, 1500);
-    $firstRangePrice = 20.0;
-    $secondRangePrice = 35.0;
-    $thirdRangePrice = 40.0;
-
-    while ($units > 0) {
-
-        if ($units > 30) {
-            // units <= 30
-            $firstRangeTotal = 30 * $firstRangePrice;
-            $units -= 30;
-
-            if ($units > 60) {
-                // units > 30, units <= 60 
-                $secondRangeTotal = 30 * $secondRangePrice;
-                $units -= 30;
-
-                // units > 60 (for all)
-                for ($i = 1; $i <= $units; $i++) {
-                    $thirdRangeTotal += $thirdRangePrice;
-                    $thirdRangePrice++;
-                }
-                break;
-            } else {
-                $secondRangeTotal = $units * 35.0;
-                break;
-            }
-        } else {
-            $firstRangeTotal = $units * 20;
-            break;
-        }
-    }
-
-    // $totalChargeForUnits = $firstRangeTotal + $secondRangeTotal + $thirdRangeTotal;
-
-    $units = $unitsTmp;
-
-    if ($units < 30) {
-        $fixedCharge = $fixedChargesArray[0];
-    } elseif (30 < $units && $units <= 60) {
-        $fixedCharge = $fixedChargesArray[1];
-    } elseif ($units > 60) {
-        $fixedCharge = $fixedChargesArray[2];
-    }
-
-    $resultArray = array($firstRangeTotal, $secondRangeTotal, $thirdRangeTotal, $fixedCharge);
-    return $resultArray;
-}
-
-
-if (isset($_POST['bt_search'])) {
-
-    $accNo = $_POST['acc_no'];
-
-    $sql = "SELECT * FROM customer WHERE acc_no LIKE '$accNo'";
-
-    $result = $con->query($sql);
-    $row = $result->fetch_assoc();
-
-    if ($result->num_rows > 0) {
-        $_SESSION['acc_no'] = $accNo;
-        $_SESSION['acc_name'] = $row['cus_name'];
-
-    } else {
-        $_SESSION['error'] = "Account number does not exists";
-    }
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -211,10 +123,10 @@ if (isset($_POST['bt_search'])) {
                         </div>
 
                         <?php
-                        $units = $rowOne['m_reading'] - $rowTwo['m_reading'];
-                        $resultArray = calculateBill($units);
-                        $totalPriceForUnits = totalPriceForUnits($resultArray);
-                        $totalPriceForMonth = totalPriceForMonth($resultArray);
+                        $myBill = new EBill($accNo, $rowOne['m_reading'], $rowOne['date'], $rowTwo['m_reading'], $rowTwo['date']);
+                        $units = $myBill->units;
+                        // $totalPriceForUnits = $myBill->getTotalPriceForUnits();
+                        // $totalPriceForMonth = $myBill->getTotalPriceForMonth();
                         ?>
 
                         <div class="table-responsive p-5">
@@ -233,7 +145,7 @@ if (isset($_POST['bt_search'])) {
                                         <td>500 LKR</td>
                                         <td>20 LKR</td>
                                         <td>
-                                            <?php echo $resultArray[0]; ?>
+                                            <?php echo $myBill->totalFirstRange; ?>
                                         </td>
                                     </tr>
                                     <tr>
@@ -241,7 +153,7 @@ if (isset($_POST['bt_search'])) {
                                         <td>1000 LKR</td>
                                         <td>35 LKR</td>
                                         <td>
-                                            <?php echo $resultArray[1]; ?>
+                                            <?php echo $myBill->totalSecondRange; ?>
                                         </td>
                                     </tr>
                                     <tr>
@@ -249,13 +161,13 @@ if (isset($_POST['bt_search'])) {
                                         <td>1500 LKR</td>
                                         <td>Starting from 40 LKR increase the rate by 1 LKR per each increasing unit</td>
                                         <td>
-                                            <?php echo $resultArray[2]; ?>
+                                            <?php echo $myBill->totalThirdRange; ?>
                                         </td>
                                     </tr>
                                     <tr>
                                         <th colspan="3"> Total Charge For Units </th>
                                         <td>
-                                            <?php echo $totalPriceForUnits; ?>
+                                            <?php echo $myBill->getTotalPriceForUnits() ?>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -265,28 +177,28 @@ if (isset($_POST['bt_search'])) {
                         <div class="row h5">
                             <div class="col fw-bold">Total Units For Month</div>
                             <div class="col text-end">
-                                <?php echo $units; ?>
+                                <?php echo $myBill->units; ?>
                             </div>
                         </div>
 
                         <div class="row h5">
                             <div class="col fw-bold">Total Charge For Units</div>
                             <div class="col text-end">
-                                <?php echo $totalPriceForUnits; ?>
+                                <?php echo $myBill->getTotalPriceForUnits(); ?>
                             </div>
                         </div>
 
                         <div class="row h5">
                             <div class="col fw-bold">Fixed Charge For Month</div>
                             <div class="col text-end">
-                                <?php echo $resultArray[3]; ?>
+                                <?php echo $myBill->getFixedCharges(); ?>
                             </div>
 
                         </div>
                         <div class="row h5">
                             <div class="col fw-bold">Total Charge For Month</div>
                             <div class="col text-end">
-                                <?php echo $totalPriceForMonth; ?>
+                                <?php echo $myBill->getTotalPriceForMonth(); ?>
                             </div>
                         </div>
 
