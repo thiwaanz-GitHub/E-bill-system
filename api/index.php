@@ -16,12 +16,12 @@
     </form>
 
     <?php
-    // echo $_SERVER['HTTP_HOST'] . "<br>";
-    // echo $_SERVER['REQUEST_URI'];
+    echo $_SERVER['HTTP_HOST'] . "<br>";
+    echo $_SERVER['REQUEST_URI'];
     if (isset($_POST['submit'])) {
         if (isset($_POST['acc_no']) && $_POST['acc_no'] != '') {
             $accNo = $_POST['acc_no'];
-            $url = "http://localhost/E-bill-system/api/api.php/?acc_no=" . $accNo;
+            $url = "$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]api.php/?acc_no=" . $accNo;
 
             $client = curl_init();
             curl_setopt($client, CURLOPT_URL, $url);

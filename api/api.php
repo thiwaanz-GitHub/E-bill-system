@@ -36,6 +36,7 @@ if(isset($_GET['acc_no']) && $_GET['acc_no'] != ''){
         
         http_response_code(200);
         echo json_encode($response);
+        
     }
     else{
         http_response_code(404);
@@ -43,16 +44,5 @@ if(isset($_GET['acc_no']) && $_GET['acc_no'] != ''){
     }
     $con->close();
 }
-
-// function response($accNo, $lastMR, $lastMRDate, $previousMR, $previousMRDate) {
-//     $response['acc_no'] = $accNo;
-//     $response['last_meter_reading'] = $lastMR;
-//     $response['last_meter_reading_date'] = $lastMRDate;
-//     $response['previous_meter_reading'] = $previousMR;
-//     $response['previous_meter_reading_date'] = $previousMRDate;
-	
-// 	$json_response = json_encode($response);
-// 	echo $json_response;
-// }
 
 ?>

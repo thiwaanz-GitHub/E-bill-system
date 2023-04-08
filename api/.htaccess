@@ -1,0 +1,2 @@
+RewriteEngine On
+RewriteRule ^api/([0-9]+)/?$ api/api.php/?acc_no=$1 [L]
