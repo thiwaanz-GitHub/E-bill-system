@@ -61,18 +61,22 @@ if (isset($_POST['bt_submit'])) {
   </div>
 
   <main class="container w-100 m-auto form">
-    <form method="post" >
-      <h2 class="mb-5 fw-bold text-uppercase">Login As Meter Reader</h2>
+  <div class="logout">
+    <a href="index.php"><i class="bi bi-box-arrow-left text-danger"></i></a>
+  </div>
+
+    <form method="post">
+      <h2 class="mb-5 mt-2 fw-bold text-uppercase">Login As <br> Meter Reader</h2>
 
       <div class="mb-3 row">
-        <label for="user_name" class="col-sm-2 col-form-label fw-bold">Username</label>
+        <label for="user_name" class="col-sm-2 col-form-label fw-bold pe-3">Username</label>
         <div class="col-sm-10">
           <input type="text" class="form-control" id="user_name" name="user_name" />
         </div>
       </div>
 
       <div class="mb-3 row">
-        <label for="user_pass" class="col-sm-2 col-form-label fw-bold">Password</label>
+        <label for="user_pass" class="col-sm-2 col-form-label fw-bold pe-3">Password</label>
         <div class="col-sm-10">
           <input type="password" class="form-control" id="user_pass" name="user_pass" />
         </div>

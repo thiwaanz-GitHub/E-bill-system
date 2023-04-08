@@ -1,28 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap');
+*{
+    box-sizing: border-box;
+    font-family: 'Nunito', sans-serif;
+}
 .body {
     display: flex;
     align-items: center;
     padding-top: 40px;
     padding-bottom: 40px;
+    background-color: #242730;
     
 }
 .form{
     max-width: 500px;
     padding: 40px;
     border-radius: 8px;
-    box-shadow: 1px 1px 6px 2px #dededee0;
-    background-color: #000000;
-    color: white;
-    box-shadow: 1px 1px 5px 5px rgb(88, 88, 88);
+    background-color: #e9ebce;
+    color: rgb(0, 0, 0);
+    box-shadow: none;
     
 }
 
 .btt{
-    background-color: rgb(0, 191, 255);
+    background-color: #d73547;
     border: none;
-    padding: 5px 20px;
-        
+    padding: 10px 20px;
+    color: #ffffff;
+    font-weight: bold;
+    opacity: 0.6;
 }
 
-button:hover{
-    background-color: blue;
+.btt:hover{
+    background-color: #d73547;
+    /* border: 1px #d400ff; */
+    opacity: 1;
 }

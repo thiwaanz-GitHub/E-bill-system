@@ -64,10 +64,16 @@ if (isset($_POST['bt_save'])) {
 
     ?>
   </div>
+  <!-- <a href="meter_reader_login.php" class="btn btn-primary b-logout btt " >Log Out</a> -->
 
-  <main class="container w-100 m-auto form">
+  <main class="container m-auto form">
+  <div class="logout">
+    <a href="meter_reader_login.php"><i class="bi bi-box-arrow-left text-danger"></i></a>
+  </div>
+  
+  
     <form method="post" class="form">
-      <h2 class="mb-5 fw-bold text-uppercase">Meter Reading</h2>
+      <h2 class="mb-3 fw-bold text-uppercase">Meter Reading</h2>
 
       <div class="mb-3 row">
         <label for="acc_no" class="col-sm-2 col-form-label fw-bold">Account Number</label>
@@ -83,15 +89,14 @@ if (isset($_POST['bt_save'])) {
         </div>
       </div>
 
-      <div class="mb-5 row">
+      <div class="mb-1 row">
         <label for="m_reading" class="col-sm-2 col-form-label fw-bold">Meter Reading</label>
         <div class="col-sm-10">
           <input type="number" class="form-control mt-3" id="m_reading" name="m_reading" required>
         </div>
       </div>
-
       <button type="submit" class="btn btn-primary btt" name="bt_save">Save</button>
-
+      
     </form>
   </main>
 
