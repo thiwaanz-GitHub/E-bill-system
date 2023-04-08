@@ -21,7 +21,7 @@
     if (isset($_POST['submit'])) {
         if (isset($_POST['acc_no']) && $_POST['acc_no'] != '') {
             $accNo = $_POST['acc_no'];
-            $url = "http://localhost/E-bill-system-1/api/api.php/?acc_no=" . $accNo;
+            $url = "http://localhost/E-bill-system/api/api.php/?acc_no=" . $accNo;
 
             $client = curl_init();
             curl_setopt($client, CURLOPT_URL, $url);
