@@ -16,8 +16,10 @@
     </form>
 
     <?php
-    echo $_SERVER['HTTP_HOST'] . "<br>";
+    echo $_SERVER['HTTP_HOST'];
     echo $_SERVER['REQUEST_URI'];
+    echo "<br>";
+    
     if (isset($_POST['submit'])) {
         if (isset($_POST['acc_no']) && $_POST['acc_no'] != '') {
             $accNo = $_POST['acc_no'];
@@ -33,21 +35,25 @@
             curl_setopt($client, CURLOPT_TIMEOUT, 20);
             // curl_setopt($client, CURLOPT_FOLLOWLOCATION, false);
             $response = curl_exec($client);
-            // if (($response = curl_exec($client)) === false) {
-            //     echo 'Curl error: ' . curl_error($client);
+            $status_code = curl_getinfo($client, CURLINFO_HTTP_CODE);
+
+            // if ($response === null) {
+            //     echo 'Error! ' . curl_error($client);
             //     die('111');
             // }
+            if ($status_code != 200) {
+                echo "Error: No Data Found : $status_code";
+            } else {
+                $result = json_decode($response);
+                echo "<table>";
+                echo "<tr><td>Account Number:</td><td>$result->acc_no</td></tr>";
+                echo "<tr><td>Last Meter Reading:</td><td>$result->last_meter_reading</td></tr>";
+                echo "<tr><td>Last Meter Reading Date:</td><td>$result->last_meter_reading_date</td></tr>";
+                echo "<tr><td>Previous Meter Reading:</td><td>$result->previous_meter_reading</td></tr>";
+                echo "<tr><td>Previous Meter Reading Date:</td><td>$result->previous_meter_reading_date</td></tr>";
+                echo "</table>";
+            }
             curl_close($client);
-            $result = json_decode($response);
-
-            // echo $url;
-            echo "<table>";
-            echo "<tr><td>Account Number:</td><td>$result->acc_no</td></tr>";
-            echo "<tr><td>Last Meter Reading:</td><td>$result->last_meter_reading</td></tr>";
-            echo "<tr><td>Last Meter Reading Date:</td><td>$result->last_meter_reading_date</td></tr>";
-            echo "<tr><td>Previous Meter Reading:</td><td>$result->previous_meter_reading</td></tr>";
-            echo "<tr><td>Previous Meter Reading Date:</td><td>$result->previous_meter_reading_date</td></tr>";
-            echo "</table>";
         }
     }
     ?>
