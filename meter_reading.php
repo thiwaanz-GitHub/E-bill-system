@@ -15,10 +15,10 @@ if (isset($_POST['bt_save'])) {
     } else {
       $_SESSION['error'] = "Something went wrong. Please try again";
     }
-  } 
+  }
   // catch (Exception $e) {
   //   $_SESSION['error'] = $e->getMessage();
-    
+
   // } 
   catch (mysqli_sql_exception $e) {
     $_SESSION['error'] = "Account number does not exists";
@@ -83,7 +83,7 @@ if (isset($_POST['bt_save'])) {
         </div>
       </div>
 
-      <div class="mb-3 row">
+      <div class="mb-5 row">
         <label for="m_reading" class="col-sm-2 col-form-label fw-bold">Meter Reading</label>
         <div class="col-sm-10">
           <input type="number" class="form-control mt-3" id="m_reading" name="m_reading" required>

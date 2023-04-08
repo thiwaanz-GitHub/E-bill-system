@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 05, 2023 at 02:30 PM
+-- Generation Time: Apr 06, 2023 at 04:44 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -213,10 +213,12 @@ CREATE TABLE `meter_reading` (
 --
 
 INSERT INTO `meter_reading` (`id`, `acc_no`, `date`, `m_reading`) VALUES
-(3, 10000001, '2023-04-05', 750),
-(5, 10000001, '2023-05-05', 800),
-(6, 10000001, '2023-06-05', 900),
-(7, 10000002, '2023-04-11', 222);
+(7, 10000002, '2023-04-11', 222),
+(12, 10000003, '2023-01-01', 50),
+(13, 10000003, '2023-02-01', 200),
+(14, 10000001, '2023-01-10', 100),
+(15, 10000001, '2023-02-10', 150),
+(16, 10000001, '2023-03-10', 220);
 
 -- --------------------------------------------------------
 
@@ -229,6 +231,13 @@ CREATE TABLE `user` (
   `name` varchar(20) NOT NULL,
   `password` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `name`, `password`) VALUES
+(1, 'admin', 'admin');
 
 --
 -- Indexes for dumped tables
@@ -261,13 +270,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `meter_reading`
 --
 ALTER TABLE `meter_reading`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
